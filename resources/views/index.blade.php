@@ -5,8 +5,8 @@
     <div class="row">
       <div class="col-lg-7">
         <div class="header-text">
-            {!!$home->title!!}
-            {!!$home->intro!!}
+            <h1>{!!$home->title!!}</h1>
+            <h2>{!!$home->intro!!}</h2>
             <div class="main-button">
                 <a href="{{route('playlist')}}">Browse Playlists Now</a>
               </div>

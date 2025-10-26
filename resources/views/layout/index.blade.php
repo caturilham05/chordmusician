@@ -6,11 +6,16 @@
     <meta charset="utf-8">
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ $description ?? 'Temukan chord gitar lagu-lagu Indonesia dan Barat di Chord Musician.' }}">
+    <meta name="keywords" content="chord, kunci gitar, lirik lagu, chord musisi, chord gitar indonesia, chord musician, kumpulan chord, lagu populer, chord lagu barat">
+    <meta name="robots" content="index, follow">
 
+    <title>{{str_replace('-', ' ', config('app.name'))}} | {{$title ?? 'Chord Musisi - Kumpulan Chord Lagu Terlengkap'}}</title>
+
+    <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>{{str_replace('-', ' ', config('app.name'))}} | {{$title ?? ''}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">

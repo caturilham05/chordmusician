@@ -6,7 +6,7 @@
                     <!-- ***** Logo Start ***** -->
                     <a href="/" class="logo">
                         <h3 style="color: #fff !important">Chord Musisi</h3>
-                        {{-- <img src="{{asset('assets/images/logo.png')}}" alt=""> --}}
+                        {{-- <img src="{{asset('assets/images/favicon.png')}}" alt=""> --}}
                     </a>
 
                     <div class="search-input">
