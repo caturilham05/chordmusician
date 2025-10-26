@@ -230,6 +230,10 @@ main#song {
     margin: 2rem 0;
 }
 
+.header-area .main-nav .logo{
+    padding-top: 1rem;
+}
+
 /* --- Responsif untuk tablet dan mobile --- */
 @media (max-width: 992px) {
     pre.lyrics {
