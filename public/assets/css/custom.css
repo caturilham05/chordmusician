@@ -1,0 +1,381 @@
+/* =========================================================
+   🎵 RESPONSIVE CHORD DISPLAY STYLE
+   ========================================================= */
+
+p {
+    color: #8e8e8e !important;
+}
+
+.telabox {
+    font-family: monospace;
+    color: #ffffff;
+    overflow-x: auto;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* --- Area teks lirik & chord --- */
+pre.lyrics {
+    white-space: pre-wrap; /* Bungkus baris panjang */
+    word-break: break-word; /* Pecah baris bila terlalu panjang */
+    overflow-x: auto; /* Tetap bisa scroll horizontal kalau perlu */
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    line-height: 1.7;
+    color: inherit;
+    font-size: 15px;
+}
+
+/* --- Chord highlight --- */
+a.chord,
+a.tbi-tooltip {
+    color: #00ffcc;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: default;
+    display: inline-block;
+    margin-right: 4px;
+    position: relative;
+}
+
+/* --- Tooltip chord (gambar chord saat hover) --- */
+.tbi-tooltip .custom {
+    display: none;
+    position: absolute;
+    top: -130px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10;
+}
+
+.tbi-tooltip:hover .custom {
+    display: block;
+}
+
+/* --- Area utama lagu --- */
+main#song {
+    line-height: 1.4;
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* --- Controls Bar --- */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    background: #222;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+.controls button,
+.controls input[type="button"] {
+    background: #00ffcc;
+    color: #000;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.controls button:hover,
+.controls input[type="button"]:hover {
+    background: #00e6b3;
+}
+
+/* --- Pembungkus utama --- */
+.frame_youtube {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Pembungkus video agar bisa di-radius --- */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Rasio 16:9 */
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    background: #000;
+}
+
+/* --- Iframe Youtube --- */
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    border-radius: 20px; /* tambahan opsional */
+}
+
+/* --- Gambar fallback jika tidak ada video --- */
+.frame_youtube img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.item.item-custom ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 10px; /* opsional, jarak antar <li> */
+}
+
+.item.item-custom ul li {
+    flex: 1;
+    /* text-align: center; */
+}
+
+.item.item-custom ul li:nth-child(2) {
+    flex: 2;
+}
+
+.item.item-custom ul .published_date {
+    font-size: 0.9rem;
+    color: #888;
+}
+.main-info-custom {
+    margin-top: 3rem;
+}
+
+.search-input.search-input-custom {
+    position: relative; /* penting agar ikon bisa diposisikan absolut di dalamnya */
+    display: inline-block;
+    width: 100%; /* atau ubah sesuai kebutuhan */
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.search-custom {
+    background-color: #575a5c;
+    height: 46px;
+    border-radius: 23px;
+    border: none;
+    color: #ccc;
+    font-size: 14px;
+    padding: 0px 15px 0px 45px; /* ruang di kiri buat ikon */
+    width: 30%;
+    box-sizing: border-box;
+}
+
+.fa-search-custom {
+    position: absolute;
+    color: #666;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none; /* biar klik tetap ke input */
+}
+
+.pagination {
+    gap: 8px;
+}
+
+.pagination .page-link {
+    color: #ec6090; /* warna teks */
+    border: 1px solid #ec6090; /* garis */
+    background-color: transparent;
+    transition: all 0.3s ease;
+    border-radius: 50px; /* biar agak bulat */
+    padding: 6px 14px;
+    font-weight: 500;
+}
+
+.pagination .page-link:hover {
+    background-color: #ec6090;
+    color: white;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ec6090;
+    border-color: #ec6090;
+    color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #aaa;
+    border-color: #ddd;
+    background-color: #f8f9fa;
+}
+
+.hr-custom {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.50);
+    margin: 2rem 0;
+}
+
+/* --- Responsif untuk tablet dan mobile --- */
+@media (max-width: 992px) {
+    pre.lyrics {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .controls button,
+    .controls input[type="button"] {
+        width: 100%;
+        max-width: 320px;
+        font-size: 0.95rem;
+    }
+
+    .tbi-tooltip .custom {
+        width: 70px;
+        height: 100px;
+        top: -110px;
+    }
+
+    .video-wrapper {
+        border-radius: 16px;
+        padding-top: 56.25%; /* tetap 16:9 */
+    }
+
+    .item.item-custom ul .published_date {
+        display: none;
+    }
+
+}
+
+@media (max-width: 480px) {
+    pre.lyrics {
+        font-size: 12px;
+    }
+
+    .controls {
+        gap: 6px;
+    }
+
+    .controls button,
+    .controls input[type="button"] {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+
+    .heading-section.detail h4 {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .frame_youtube {
+        margin-top: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .video-wrapper {
+        border-radius: 12px;
+        padding-top: 56.25%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .video-wrapper iframe {
+        border-radius: 12px;
+    }
+    .item.item-custom {
+        width: 100%;
+        max-width: none;
+    }
+
+    .item.item-custom ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* biar teks rata kiri */
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* garis pembatas antar lagu */
+    }
+
+    .item.item-custom ul li {
+        width: 100%;
+        width: 100%;
+        text-align: left;
+        margin: 2px 0;
+    }
+
+    .item.item-custom ul .published_date {
+        display: none;
+    }
+
+    .heading-section-custom h4 {
+        text-align: center;
+    }
+
+    .main-info-custom {
+        margin-top: 2rem;
+    }
+
+    .item.item-custom ul li h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 4px;
+    }
+
+    .item.item-custom ul li a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+
+    .item.item-custom ul li a:hover {
+        color: #ff6699; /* opsional efek hover */
+    }
+
+    .heading-section-custom {
+        margin-top: 3rem;
+    }
+
+    .search-input.search-input-custom {
+        display: block;
+        top: 1rem;
+    }
+
+    .search-custom {
+        width: 100%;
+    }
+
+    .header-area .main-nav {
+        display: block !important;
+    }
+
+    .pagination-custom {
+        display: flex;
+        justify-content: center;
+    }
+
+    .hr-custom {
+        display: none;
+    }
+}
