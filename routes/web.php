@@ -5,10 +5,6 @@ use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use App\Models\Playlist;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/playlist', [App\Http\Controllers\PlaylistController::class, 'index'])->name('playlist');
 Route::get('/playlist', [App\Http\Controllers\PlaylistController::class, 'index'])->name('playlist');
