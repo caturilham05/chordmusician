@@ -52,16 +52,17 @@
         </div>
 
         <main id="song" style="color: white;">
-            <div class="no-copy-overlay"></div> <!-- overlay pelindung -->
             <div class="telabox">
+                <div class="no-copy-overlay"></div> <!-- overlay pelindung -->
                 @php
                     $content = $chord->content;
                     $clean = strip_tags($content);
 
                     // Perbaikan: regex agar D/F# tidak terpotong
                     // $pattern = '/([A-G][#b]?m?(?:maj|min|sus|dim|aug|add|m7|7|9|11|13)?(?:\/[A-G][#b]?)?)/';
-                    $pattern = '/(?<![A-Za-z0-9\/])([A-G][#b]?m?(?:maj|min|sus|dim|aug|add|m7|7|9|11|13)?(?:\/[A-G][#b]?)?)(?![a-zA-Z0-9#\/])/';
-
+                    // $pattern = '/(?<![A-Za-z0-9\/])([A-G][#b]?m?(?:maj|min|sus|dim|aug|add|m7|7|9|11|13)?(?:\/[A-G][#b]?)?)(?![a-zA-Z0-9#\/])/';
+                    // $pattern = '/(?<![A-Za-z0-9\/])([A-G][#b]?(?:maj|min|dim|aug|sus|add|m)?[0-9]*(?:b5)?(?:\/[A-G][#b]?)?)(?![A-Za-z0-9#\/])/i';
+                    $pattern = '/(?<![A-Za-z0-9\/])([A-G][#b]?(?:maj|min|dim|aug|sus|add|m)?[0-9]*(?:b5|-5)?(?:\/[A-G][#b]?)?)(?![A-Za-z0-9#\/])/i';
 
                     $formatted = preg_replace_callback($pattern, function ($matches) {
                         $chord = $matches[1];
