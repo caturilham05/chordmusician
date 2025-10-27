@@ -18,7 +18,7 @@
 
         <div class="col-lg-4">
             <div class="heading-section detail">
-                <h4 style="text-transform: uppercase">CHORD {{$chord->band}}</h4>
+                <h4 style="text-transform: uppercase">other {{$chord->band}} chords</h4>
             </div>
             <ul>
                 @foreach ($playlistsByBand as $playlist)
@@ -50,15 +50,15 @@
         <div class="controls mb-3 mt-3">
             <button id="transdown" class="btn btn-secondary">Transpose -</button>
             <button id="transup" class="btn btn-secondary">Transpose +</button>
-            <input type="button" data-csize="-1" value="A-" class="btn btn-light" />
-            <input type="button" data-csize="1" value="A+" class="btn btn-light" />
+            <input type="button" data-csize="-1" value="Font Size -" class="btn btn-light" />
+            <input type="button" data-csize="1" value="Font Size +" class="btn btn-light" />
             <button onclick="toggleScroll()" class="btn btn-warning">Auto Scroll</button>
         </div>
 
         <main id="song" style="color: white;">
             <div class="telabox">
                 <div class="no-copy-overlay"></div> <!-- overlay pelindung -->
-                @php
+                {{-- @php
                     $content = $chord->content;
                     $clean = strip_tags($content);
 
@@ -73,7 +73,28 @@
                         $class = 'tbi-' . str_replace(['#', 'b', '/'], ['cis', 'b', '-'], $chord);
                         return '<a class="chord tbi-tooltip">' . $chord . '<span class="custom ' . $class . '"></span></a>';
                     }, $clean);
+                @endphp --}}
+
+                @php
+                    $content = $chord->content;
+                    $clean = strip_tags($content);
+
+                    $pattern = '/(?<![A-Za-z0-9\/])([A-G][#b]?(?:maj|min|dim|aug|sus|add|m)?[0-9]*(?:b5|-5)?(?:\/[A-G][#b]?)?)(?![A-Za-z0-9#\/])/i';
+
+                    $formatted = preg_replace_callback($pattern, function ($matches) {
+                        $chord = $matches[1];
+
+                        // ✅ Hanya proses kalau huruf pertama kapital (A–G)
+                        if (ctype_upper($chord[0])) {
+                            $class = 'tbi-' . str_replace(['#', 'b', '/'], ['cis', 'b', '-'], $chord);
+                            return '<a class="chord tbi-tooltip">' . $chord . '<span class="custom ' . $class . '"></span></a>';
+                        }
+
+                        // Jika bukan huruf kapital (misalnya 'a' kecil di lirik), biarkan apa adanya
+                        return $chord;
+                    }, $clean);
                 @endphp
+
                 <pre class="lyrics">{!! $formatted !!}</pre>
             </div>
         </main>

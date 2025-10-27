@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model
 {
     protected $table = 'playlists';
-    protected $fillable = ['band', 'title', 'slug', 'content', 'published_at', 'link_youtube'];
+    protected $fillable = ['band', 'title', 'slug', 'content', 'published_at', 'link_youtube', 'click'];
     protected $casts = [
         'published_at' => 'datetime',
     ];
@@ -54,6 +54,15 @@ class Playlist extends Model
                     ->paginate(10)
                     ->withQueryString();
     }
+
+    public static function playlistByClick($limit = 5)
+    {
+        return self::orderBy('click', 'desc')
+                    ->whereNotNull('published_at')
+                    ->limit($limit)
+                    ->get();
+    }
+
 
     public function getPublishedFormattedDateAttribute()
     {

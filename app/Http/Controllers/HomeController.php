@@ -12,10 +12,12 @@ class HomeController extends Controller
     {
         $home = Home::getHome();
         $playlists = Playlist::getLatestPlaylists(5);
+        $playlists_click = Playlist::playlistByClick(5);
         return view('index', [
             'home' => $home,
             'playlists' => $playlists,
-            'title'  => 'Home'
+            'title'  => 'Home',
+            'playlists_click' => $playlists_click,
         ]);
     }
 }
