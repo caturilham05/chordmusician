@@ -234,6 +234,24 @@ main#song {
     padding-top: 1rem;
 }
 
+.telabox, .lyrics {
+    user-select: none; /* Tidak bisa diblok */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.no-copy-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: transparent;
+    z-index: 10;
+}
+.telabox {
+    position: relative;
+}
+
 /* --- Responsif untuk tablet dan mobile --- */
 @media (max-width: 992px) {
     pre.lyrics {

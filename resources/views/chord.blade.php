@@ -52,6 +52,7 @@
         </div>
 
         <main id="song" style="color: white;">
+            <div class="no-copy-overlay"></div> <!-- overlay pelindung -->
             <div class="telabox">
                 @php
                     $content = $chord->content;
@@ -68,8 +69,6 @@
                         return '<a class="chord tbi-tooltip">' . $chord . '<span class="custom ' . $class . '"></span></a>';
                     }, $clean);
                 @endphp
-
-
                 <pre class="lyrics">{!! $formatted !!}</pre>
             </div>
         </main>
@@ -175,5 +174,17 @@
                 }
             };
         });
+    });
+
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        // Ctrl+C, Ctrl+U, Ctrl+S, Ctrl+Shift+I, Ctrl+Shift+J
+        if ((e.ctrlKey && ['c', 'u', 's'].includes(e.key.toLowerCase())) ||
+            (e.ctrlKey && e.shiftKey && ['i', 'j'].includes(e.key.toLowerCase()))) {
+            e.preventDefault();
+        }
     });
 </script>
