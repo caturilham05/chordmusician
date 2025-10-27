@@ -16,7 +16,7 @@ class Playlist extends Model
     {
         return self::whereNotNull('published_at')
                     ->orderBy('published_at', 'desc')
-                    ->paginate(3);
+                    ->paginate(10);
                     // ->get();
     }
 
@@ -25,6 +25,16 @@ class Playlist extends Model
         return self::where('slug', $slug)
                     ->whereNotNull('published_at')
                     ->first();
+    }
+
+    public static function getPlaylistsByBand($slug)
+    {
+        $playlist = self::getPlaylistBySlug($slug);
+        return self::where('band', $playlist->band)
+                    ->whereNotNull('published_at')
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(10)
+                    ->withQueryString();
     }
 
     public static function getLatestPlaylists($limit = 5)
@@ -41,7 +51,7 @@ class Playlist extends Model
                     ->orWhere('band', 'like', '%' . $query . '%')
                     ->whereNotNull('published_at')
                     ->orderBy('published_at', 'desc')
-                    ->paginate(2)
+                    ->paginate(10)
                     ->withQueryString();
     }
 

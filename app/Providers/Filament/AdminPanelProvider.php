@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->favicon(asset('assets/images/favicon.png'))
+            ->favicon(asset('favicon.png'))
             ->brandName('Chord Musician')
             ->login()
             ->colors([

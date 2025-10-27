@@ -21,28 +21,32 @@
                 <h4 style="text-transform: uppercase">CHORD {{$chord->band}}</h4>
             </div>
             <ul>
-                <li><a href="/">Bukti</a></li>
-                <hr style="color: white" />
-                <li><a href="/">Surat Cinta Untuk Starla</a></li>
-                <hr style="color: white" />
-                <li><a href="/">Rahasia</a></li>
-                <hr style="color: white" />
-                {{-- @foreach ($playlists as $playlist)
+                @foreach ($playlistsByBand as $playlist)
                     <li><a href="{{route('chord', [
                         'year' => $playlist->published_at->format('Y'),
                         'month' => $playlist->published_at->format('m'),
                         'slug' => $playlist->slug
                     ])}}">{{$playlist->title}}</a></li>
-                @endforeach --}}
+                    <hr style="color: white" />
+                @endforeach
+                <div class="mt-4 mb-4 pagination-custom">
+                    {{ $playlistsByBand->links() }}
+                </div>
             </ul>
+            <div style="text-align: center; padding: 10px; text-transform: uppercase;">
+                <img src="{{asset('assets/images/saweria.jpg')}}" alt="saweria" class="img-fluid" style="width: 200px; max-width: 100%;"/>
+                <h5 style="margin-top: 1rem"><a href="https://saweria.co/chordmusician" target="blank">Link Saweria Request Chord</a></h5>
+            </div>
         </div>
     </div>
 </div>
 <!-- ***** Featured End ***** -->
-
+<hr style="color: white" />
 <div class="content">
     <div class="row">
-        <h4>{!! $chord->title !!}</h4>
+        <div style="text-align: center; text-transform: uppercase;">
+            <h4>{!!$chord->band!!} - {!! $chord->title !!}</h4>
+        </div>
         <div class="controls mb-3 mt-3">
             <button id="transdown" class="btn btn-secondary">Transpose -</button>
             <button id="transup" class="btn btn-secondary">Transpose +</button>
