@@ -58,7 +58,7 @@
         <main id="song" style="color: white;">
             <div class="telabox">
                 <div class="no-copy-overlay"></div> <!-- overlay pelindung -->
-                @php
+                {{-- @php
                     $content = $chord->content;
                     $clean = strip_tags($content);
 
@@ -73,9 +73,9 @@
                         $class = 'tbi-' . str_replace(['#', 'b', '/'], ['cis', 'b', '-'], $chord);
                         return '<a class="chord tbi-tooltip">' . $chord . '<span class="custom ' . $class . '"></span></a>';
                     }, $clean);
-                @endphp
+                @endphp --}}
 
-                {{-- @php
+                @php
                     $content = $chord->content;
                     $clean = strip_tags($content);
 
@@ -93,7 +93,7 @@
                         // Jika bukan huruf kapital (misalnya 'a' kecil di lirik), biarkan apa adanya
                         return $chord;
                     }, $clean);
-                @endphp --}}
+                @endphp
 
                 <pre class="lyrics">{!! $formatted !!}</pre>
             </div>
