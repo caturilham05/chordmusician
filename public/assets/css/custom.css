@@ -37,7 +37,7 @@ a.tbi-tooltip {
     text-decoration: none;
     cursor: default;
     display: inline-block;
-    margin-right: 4px;
+    /* margin-right: 4px; */
     position: relative;
 }
 

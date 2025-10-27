@@ -21,6 +21,8 @@ class PlaylistsTable
                     ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
+                TextColumn::make('click')
+                    ->sortable(),
                 TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),
