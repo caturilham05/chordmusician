@@ -89,7 +89,7 @@
      style="display:none; position:absolute; z-index:9999;
             background:white; border:1px solid #ccc; border-radius:8px;
             padding:1px; box-shadow:0 4px 10px rgba(0,0,0,0.15);">
-    <h6 id="chordPopoverTitle" style="margin:0; font-weight:bold; color: #000; text-align: center"></h6>
+    {{-- <h6 id="chordPopoverTitle" style="margin:0; font-weight:bold; color: #000; text-align: center"></h6> --}}
     <img id="chordPopoverImage" src="" alt="Chord" style="max-width:100px; margin-top:1px;">
 </div>
 
@@ -240,7 +240,7 @@
                 const img = $('#chordPopoverImage');
 
                 const notFoundPath = '/assets/images/chords/tab-not-found.png';
-                const pngPath = '/assets/images/chords/' + chord + '.png';
+                const pngPath = '/assets/images/chords/' + chord + '.jpg';
 
                 title.text($(this).text().trim());
                 img.attr('src', pngPath);
