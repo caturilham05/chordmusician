@@ -16,7 +16,7 @@ class HomeController extends Controller
         return view('index', [
             'home' => $home,
             'playlists' => $playlists,
-            'title'  => 'Home',
+            'title'  => 'Kumpulan Chord Lagu Terlengkap',
             'playlists_click' => $playlists_click,
         ]);
     }

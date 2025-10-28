@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>500 - Internal Server Error</title>
     <style>
         * {
             margin: 0;
@@ -57,8 +57,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>404</h1>
-        <p>Oops! page not found.</p>
+        <h1>500</h1>
+        <p>Oops! There is a problem on our server, please wait a moment..</p>
         <a href="{{ url('/') }}">Back to home</a>
     </div>
 </body>
