@@ -253,27 +253,23 @@ main#song {
     width: 100%;
     height: 100%;
     background: transparent;
-    pointer-events: none; /* 👈 penting: biar gak ganggu klik */
+    pointer-events: none;
     z-index: 10;
 }
 
-/* .telabox, .lyrics {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+.tbi-tooltip {
+  cursor: pointer;
+  color: #00ff6a;
+  font-weight: bold;
+}
+.tbi-tooltip:hover {
+  text-decoration: underline;
+  color: #00ffb3;
 }
 
-.no-copy-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: transparent;
-    z-index: 10;
+#chordPopover {
+    transition: all 0.2s ease;
 }
-.telabox {
-    position: relative;
-} */
 
 /* --- Responsif untuk tablet dan mobile --- */
 @media (max-width: 992px) {

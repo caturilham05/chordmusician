@@ -31,7 +31,8 @@ class PlaylistForm
                     ->label('Add Published Date')
                     ->native(false) // gunakan flatpickr, bukan native input
                     ->displayFormat('Y-m-d') // format tampilan
-                    ->closeOnDateSelection(true),
+                    ->closeOnDateSelection(true)
+                    ->required(),
             ]);
     }
 }

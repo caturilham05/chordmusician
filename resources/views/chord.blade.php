@@ -18,7 +18,7 @@
 
         <div class="col-lg-4">
             <div class="heading-section detail">
-                <h4 style="text-transform: uppercase">other {{$chord->band}} chords</h4>
+                <h4 style="text-transform: uppercase">other {{$chord->band}}</h4>
             </div>
             <ul>
                 @foreach ($playlistsByBand as $playlist)
@@ -44,7 +44,7 @@
 <hr style="color: white" />
 <div class="content">
     <div class="row">
-        <div style="text-align: center; text-transform: uppercase;">
+        <div style="text-align: center;">
             <h4>{!!$chord->band!!} - {!! $chord->title !!}</h4>
         </div>
         <div class="controls mb-3 mt-3">
@@ -52,7 +52,11 @@
             <button id="transup" class="btn btn-secondary">Transpose +</button>
             <input type="button" data-csize="-1" value="Font Size -" class="btn btn-light" />
             <input type="button" data-csize="1" value="Font Size +" class="btn btn-light" />
-            <button onclick="toggleScroll()" class="btn btn-warning">Auto Scroll</button>
+
+            <!-- Tombol dan pengaturan autoscroll -->
+            <button id="scrollBtn" class="btn btn-warning">Start Auto Scroll</button>
+            <input type="range" id="scrollSpeed" min="10" max="200" value="60" style="width:150px; vertical-align:middle;">
+            <label for="scrollSpeed" class="ms-1">Speed</label>
         </div>
 
         <main id="song" style="color: white;">
@@ -78,6 +82,17 @@
         </main>
     </div>
 </div>
+
+<!-- Modal chord -->
+<!-- Popover mini untuk chord -->
+<div id="chordPopover"
+     style="display:none; position:absolute; z-index:9999;
+            background:white; border:1px solid #ccc; border-radius:8px;
+            padding:1px; box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+    <h6 id="chordPopoverTitle" style="margin:0; font-weight:bold; color: #000; text-align: center"></h6>
+    <img id="chordPopoverImage" src="" alt="Chord" style="max-width:100px; margin-top:1px;">
+</div>
+
 @endsection
 
 @section('scripts')
@@ -156,27 +171,99 @@
                 changeFontSize(parseInt($(this).data("csize")));
             });
 
-            let isScrolling = false;
-            let scrollInterval;
+            let scrollActive = false;
+            let scrollSpeed = 60; // default
 
-            window.toggleScroll = function () {
-                if (!isScrolling) {
-                    isScrolling = true;
-                    scrollInterval = setInterval(() => {
-                        // scroll seluruh halaman ke bawah
-                        window.scrollBy(0, 1);
+            function autoScroll() {
+                if (!scrollActive) return;
 
-                        // berhenti otomatis kalau sudah di bawah
-                        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                            clearInterval(scrollInterval);
-                            isScrolling = false;
-                        }
-                    }, 30); // ubah 30 → lebih kecil = lebih cepat
-                } else {
-                    clearInterval(scrollInterval);
-                    isScrolling = false;
+                const step = Number(scrollSpeed) / 20;
+                window.scrollBy(0, step);
+
+                // berhenti kalau sudah di bawah
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                    stopAutoScroll();
+                    return;
                 }
-            };
+
+                // panggil frame berikutnya (lebih halus dan jalan di iOS)
+                requestAnimationFrame(autoScroll);
+            }
+
+            function startAutoScroll(speed) {
+                scrollSpeed = speed;
+                scrollActive = true;
+                requestAnimationFrame(autoScroll);
+            }
+
+            function stopAutoScroll() {
+                scrollActive = false;
+                const btn = document.getElementById('scrollBtn');
+                btn.textContent = 'Mulai Auto Scroll';
+                btn.classList.remove('btn-danger');
+                btn.classList.add('btn-warning');
+            }
+
+            const btn = document.getElementById('scrollBtn');
+            const speedInput = document.getElementById('scrollSpeed');
+
+            btn.addEventListener('click', function () {
+                const speed = speedInput.value;
+                if (scrollActive) {
+                    stopAutoScroll();
+                } else {
+                    startAutoScroll(speed);
+                    btn.textContent = 'Stop Auto Scroll';
+                    btn.classList.remove('btn-warning');
+                    btn.classList.add('btn-danger');
+                }
+            });
+
+            speedInput.addEventListener('input', function () {
+                scrollSpeed = this.value;
+            });
+
+            // ✅ hentikan scroll saat user sentuh layar
+            window.addEventListener('touchstart', stopAutoScroll, { passive: true });
+            window.addEventListener('wheel', stopAutoScroll, { passive: true });
+
+            $(document).on('click', '.tbi-tooltip', function (e) {
+                e.stopPropagation(); // biar gak langsung tertutup
+
+                const chord = $(this).text().trim()
+                .replace('#', 'sharp')
+                .replace('/', 'on')
+                .replace('-', '_');
+
+                const popover = $('#chordPopover');
+                const title = $('#chordPopoverTitle');
+                const img = $('#chordPopoverImage');
+
+                const notFoundPath = '/assets/images/chords/tab-not-found.png';
+                const pngPath = '/assets/images/chords/' + chord + '.png';
+
+                title.text($(this).text().trim());
+                img.attr('src', pngPath);
+
+                img.off('error').on('error', function() {
+                    $(this).attr('src', notFoundPath);
+                });
+
+                const offset = $(this).offset();
+                const height = $(this).outerHeight();
+
+                popover.css({
+                    top: offset.top + height + 5,
+                    left: offset.left,
+                    display: 'block'
+                });
+            });
+
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('#chordPopover, .tbi-tooltip').length) {
+                    $('#chordPopover').hide();
+                }
+            });
         });
     });
 
@@ -185,7 +272,6 @@
     });
 
     document.addEventListener('keydown', function(e) {
-        // Ctrl+C, Ctrl+U, Ctrl+S, Ctrl+Shift+I, Ctrl+Shift+J
         if ((e.ctrlKey && ['c', 'u', 's'].includes(e.key.toLowerCase())) ||
             (e.ctrlKey && e.shiftKey && ['i', 'j'].includes(e.key.toLowerCase()))) {
             e.preventDefault();
