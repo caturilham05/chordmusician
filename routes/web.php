@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use App\Models\Playlist;
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/playlist', [App\Http\Controllers\PlaylistController::class, 'index'])->name('playlist');
@@ -35,4 +36,15 @@ Route::get('/sitemap.xml', function () {
     }
 
     return $sitemap->toResponse(request());
+});
+
+Route::get('/reset-click', function () {
+    // Jalankan command yang sama dengan scheduler
+    Artisan::call('click:reset');
+
+    return 'Reset klik berhasil dijalankan.';
+});
+
+Route::get('/cek-waktu', function () {
+    return now()->toDateTimeString() . ' (' . now()->timezoneName . ')';
 });
