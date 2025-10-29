@@ -15,7 +15,12 @@ class ResetClickCommand extends Command
 
     public function handle()
     {
-        Playlist::query()->update(['click' => 0]);
+        $p = Playlist::select('id', 'click', 'click_yesterday')->get();
+        foreach ($p as $playlist) {
+            $playlist->click_yesterday = $playlist->click;
+            $playlist->click = 0;
+            $playlist->save();
+        }
         $this->info('Semua klik berhasil direset.');
     }
 }

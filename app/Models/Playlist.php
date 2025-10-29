@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model
 {
     protected $table = 'playlists';
-    protected $fillable = ['band', 'title', 'slug', 'content', 'published_at', 'link_youtube', 'click'];
+    protected $fillable = ['band', 'title', 'slug', 'content', 'published_at', 'link_youtube', 'click', 'click_yesterday'];
     protected $casts = [
         'published_at' => 'datetime',
     ];
