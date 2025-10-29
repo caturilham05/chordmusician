@@ -1,5 +1,7 @@
 <?php
 
+// 5 12 * * * cd /home/chor5665/chordmusician && php artisan schedule:run >> /dev/null 2>&1
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
