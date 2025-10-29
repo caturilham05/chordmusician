@@ -20,7 +20,7 @@ class ChordController extends Controller
         $playlistsByBand = Playlist::getPlaylistsByBand($slug);
         $chord = Playlist::getPlaylistBySlug($slug);
         return view('chord', [
-            'title' => 'Chord',
+            'title' => $playlist->slug . ' Chord Gitar dan Lirik Lagu - Chord Musician',
             'chord' => $chord,
             'playlistsByBand' => $playlistsByBand,
             'description' => 'Temukan chord gitar untuk lagu ' . ($chord ? $chord->title : 'tidak ditemukan') . ' di Chord Musisi.'

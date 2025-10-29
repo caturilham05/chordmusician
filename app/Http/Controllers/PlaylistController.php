@@ -16,7 +16,7 @@ class PlaylistController extends Controller
         return view('playlist', [
             'home' => $home,
             'playlists' => $playlists,
-            'title' => 'Playlists'
+            'title' => 'Kumpulan Chord Gitar dan Lirik Lagu - Chord Musician'
         ]);
     }
 
@@ -34,7 +34,7 @@ class PlaylistController extends Controller
             'home' => $home,
             'playlists' => $playlists,
             'query' => $query,
-            'title' => 'Search Results'
+            'title' => 'Hasil Pencarian untuk "' . $query . '" - Chord Musician'
         ]);
     }
 }

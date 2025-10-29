@@ -9,7 +9,7 @@ class RequestRecordController extends Controller
     public function index()
     {
         return view('requestRecord', [
-            'title' => 'Request Chord'
+            'title' => 'Request Chord Gitar dan Lirik Lagu - Chord Musician'
         ]);
     }
 }
