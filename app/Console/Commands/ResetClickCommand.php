@@ -1,6 +1,7 @@
 <?php
 // menit jam hari-bulan minggu
-// 15 12 * * * cd /home/chor5665/chordmusician && php artisan schedule:run >> /home/chor5665/chordmusician/storage/logs/cron.log 2>&1
+// 25 12 * * * cd /home/chor5665/chordmusician && /usr/local/bin/php artisan schedule:run >> /home/chor5665/chordmusician/storage/logs/cron.log 2>&1
+
 
 namespace App\Console\Commands;
 
