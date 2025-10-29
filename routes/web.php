@@ -38,13 +38,13 @@ Route::get('/sitemap.xml', function () {
     return $sitemap->toResponse(request());
 });
 
-Route::get('/reset-click', function () {
-    // Jalankan command yang sama dengan scheduler
-    Artisan::call('click:reset');
+// Route::get('/reset-click', function () {
+//     // Jalankan command yang sama dengan scheduler
+//     Artisan::call('click:reset');
 
-    return 'Reset klik berhasil dijalankan.';
-});
+//     return 'Reset klik berhasil dijalankan.';
+// });
 
-Route::get('/cek-waktu', function () {
-    return now()->toDateTimeString() . ' (' . now()->timezoneName . ')';
-});
+// Route::get('/cek-waktu', function () {
+//     return now()->toDateTimeString() . ' (' . now()->timezoneName . ')';
+// });
