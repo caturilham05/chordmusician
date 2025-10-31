@@ -290,7 +290,7 @@
       "name": "{{ $chord->band }} - {{ $chord->title }}",
       "description": "{{ $chord->description ?? 'Chord gitar lengkap dari ChordMusician.' }}",
       "thumbnailUrl": "https://img.youtube.com/vi/{{ $youtubeId }}/hqdefault.jpg",
-      "uploadDate": "{{ $chord->created_at->format('Y-m-d') }}",
+      "uploadDate": "{{ $chord->created_at->format('Y-m-d\\TH:i:sP') }}",
       "contentUrl": "https://www.youtube.com/watch?v={{ $youtubeId }}",
       "embedUrl": "https://www.youtube.com/embed/{{ $youtubeId }}",
       "publisher": {
