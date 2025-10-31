@@ -22,7 +22,7 @@ Route::get('/sitemap.xml', function () {
 
     // Tambahkan halaman statis (misal homepage, about, contact)
     $sitemap->add(Url::create('/')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
-    $sitemap->add(Url::create('/playlist')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
+    $sitemap->add(Url::create('/playlist')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
     $sitemap->add(Url::create('/request-chord')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
 
     // Tambahkan halaman dinamis (misal daftar chord)
