@@ -276,6 +276,18 @@ main#song {
     pre.lyrics {
         font-size: 13px;
         line-height: 1.6;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .telabox {
+        padding: 0;
+        border-radius: 0;
+    }
+
+    main#song {
+        padding: 0;
     }
 
     .controls {
@@ -300,18 +312,29 @@ main#song {
 
     .video-wrapper {
         border-radius: 16px;
-        padding-top: 56.25%; /* tetap 16:9 */
+        padding-top: 56.25%;
     }
 
     .item.item-custom ul .published_date {
         display: none;
     }
-
 }
 
 @media (max-width: 480px) {
     pre.lyrics {
         font-size: 12px;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .telabox {
+        padding: 0;
+        border-radius: 0;
+    }
+
+    main#song {
+        margin-left: -25px;
     }
 
     .controls {
