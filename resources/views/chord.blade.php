@@ -4,6 +4,15 @@
 <!-- ***** Featured Start ***** -->
 <div class="feature-banner header-text">
     <div class="row">
+        @php
+            // Ambil ID dari link embed YouTube
+            function getYoutubeId($embed)
+            {
+                preg_match('/embed\/([^"?]+)/', $embed, $matches);
+                return $matches[1] ?? '';
+            }
+            $youtubeId = getYoutubeId($chord->link_youtube);
+        @endphp
         <div class="col-lg-8">
             <div class="frame_youtube">
                 @if ($chord->link_youtube)
@@ -278,3 +287,30 @@
         }
     });
 </script>
+
+@if ($chord->link_youtube)
+    @php
+        preg_match('/embed\/([^"?]+)/', $chord->link_youtube, $matches);
+        $youtubeId = $matches[1] ?? '';
+    @endphp
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "{{ $chord->band }} - {{ $chord->title }}",
+      "description": "{{ $chord->description ?? 'Chord gitar lengkap dari ChordMusician.' }}",
+      "thumbnailUrl": "https://img.youtube.com/vi/{{ $youtubeId }}/hqdefault.jpg",
+      "uploadDate": "{{ $chord->created_at->format('Y-m-d') }}",
+      "contentUrl": "https://www.youtube.com/watch?v={{ $youtubeId }}",
+      "embedUrl": "https://www.youtube.com/embed/{{ $youtubeId }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ChordMusician",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://chordmusician.com/favicon.png"
+        }
+      }
+    }
+    </script>
+@endif
