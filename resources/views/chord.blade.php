@@ -45,7 +45,7 @@
 <div class="content">
     <div class="row">
         <div style="text-align: center;">
-            <h4>{!!$chord->band!!} - {!! $chord->title !!}</h4>
+            <h1><a href="{{url()->current()}}">Chord {!!$chord->band!!} - {!! $chord->title !!} Original Chord</a></h1>
         </div>
         <div class="controls mb-3 mt-3">
             <button id="transdown" class="btn btn-secondary">Transpose -</button>
