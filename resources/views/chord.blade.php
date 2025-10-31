@@ -92,7 +92,6 @@
     {{-- <h6 id="chordPopoverTitle" style="margin:0; font-weight:bold; color: #000; text-align: center"></h6> --}}
     <img id="chordPopoverImage" src="" alt="Chord" style="max-width:100px; margin-top:1px;">
 </div>
-
 @endsection
 
 @section('scripts')
@@ -305,3 +304,4 @@
     }
     </script>
 @endif
+@endsection
