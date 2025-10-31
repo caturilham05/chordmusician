@@ -4,15 +4,6 @@
 <!-- ***** Featured Start ***** -->
 <div class="feature-banner header-text">
     <div class="row">
-        @php
-            // Ambil ID dari link embed YouTube
-            function getYoutubeId($embed)
-            {
-                preg_match('/embed\/([^"?]+)/', $embed, $matches);
-                return $matches[1] ?? '';
-            }
-            $youtubeId = getYoutubeId($chord->link_youtube);
-        @endphp
         <div class="col-lg-8">
             <div class="frame_youtube">
                 @if ($chord->link_youtube)
