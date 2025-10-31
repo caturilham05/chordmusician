@@ -21,17 +21,17 @@ Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create();
 
     // Tambahkan halaman statis (misal homepage, about, contact)
-    $sitemap->add(Url::create('/')->setPriority(1.0));
-    $sitemap->add(Url::create('/playlist')->setPriority(0.5));
-    $sitemap->add(Url::create('/request-chord')->setPriority(0.5));
+    $sitemap->add(Url::create('/')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
+    $sitemap->add(Url::create('/playlist')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
+    $sitemap->add(Url::create('/request-chord')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
 
     // Tambahkan halaman dinamis (misal daftar chord)
     foreach (Playlist::latest()->get() as $playlist) {
         $sitemap->add(
             Url::create(url("/{$playlist->published_at->format('Y/m')}/{$playlist->slug}"))
                 ->setLastModificationDate($playlist->updated_at)
-                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+                ->setPriority(1.0)
         );
     }
 
