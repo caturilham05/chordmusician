@@ -10,6 +10,9 @@ class ChordController extends Controller
     public function index($year, $month, $slug)
     {
         $playlist = Playlist::getPlaylistBySlug($slug);
+        if (!$playlist) {
+            abort(404);
+        }
         $sessionKey = 'clicked_playlist_' . $playlist->id;
 
         if (!session()->has($sessionKey)) {
