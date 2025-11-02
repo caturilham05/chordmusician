@@ -26,7 +26,8 @@ class ChordController extends Controller
             'title' => $playlist->slug . ' Chord Gitar dan Lirik Lagu - Chord Musician',
             'chord' => $chord,
             'playlistsByBand' => $playlistsByBand,
-            'description' => 'Temukan chord gitar untuk lagu ' . ($chord ? $chord->title : 'tidak ditemukan') . ' di Chord Musisi.'
+            'description' => 'Temukan chord gitar untuk lagu ' . ($chord ? $chord->title : 'tidak ditemukan') . ' di Chord Musisi.',
+            'keywords' => sprintf('chord gitar %s %s, lirik lagu %s %s, original chord %s %s, chord dasar %s %s', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : ''),
         ]);
     }
 }
