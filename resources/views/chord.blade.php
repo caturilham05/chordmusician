@@ -298,7 +298,7 @@
         "name": "ChordMusician",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://chordmusician.com/favicon.png"
+          "url": "https://chordmusician.com/favicon.ico"
         }
       }
     }
