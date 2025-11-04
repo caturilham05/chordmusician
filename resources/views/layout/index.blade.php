@@ -17,7 +17,7 @@
     {{-- ====== Tambahan META Khusus Jika Halaman Punya Video ====== --}}
     @isset($youtubeId)
         {{-- OpenGraph video --}}
-        <meta property="og:video" content="https://www.youtube.com/embed/{{ $youtubeId }}">
+        <meta property="og:video" content="https://www.youtube.com/watch?v={{ $youtubeId }}">
         <meta property="og:video:type" content="text/html">
         <meta property="og:video:width" content="1280">
         <meta property="og:video:height" content="720">
@@ -25,7 +25,7 @@
 
         {{-- Twitter Player Card --}}
         <meta name="twitter:card" content="player">
-        <meta name="twitter:player" content="https://www.youtube.com/embed/{{ $youtubeId }}">
+        <meta name="twitter:player" content="https://www.youtube.com/watch?v={{ $youtubeId }}">
         <meta name="twitter:player:width" content="1280">
         <meta name="twitter:player:height" content="720">
     @else
