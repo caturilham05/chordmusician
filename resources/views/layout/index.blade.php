@@ -5,15 +5,40 @@
 
     <meta charset="utf-8">
     {{-- <meta name="google-site-verification" content="C4lx1dlw8HZqvEsx72FmMuCkFiQ5gnM0PZHay9n7m3s" /> --}}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $description ?? 'Temukan chord gitar lagu-lagu Indonesia dan Barat di Chord Musician.' }}">
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
+    {{-- <meta name="description" content="{{ $description ?? 'Temukan chord gitar lagu-lagu Indonesia dan Barat di Chord Musician.' }}"> --}}
     <meta name="keywords" content="{{ $keywords ?? 'chord, kunci gitar, lirik lagu, chord musisi, chord gitar indonesia, chord musician, kumpulan chord, lagu populer, chord lagu barat, chord lagu indonesia' }}">
-    <meta name="robots" content="index, follow">
+    {{-- <meta name="robots" content="index, follow"> --}}
 
-    <title>{{str_replace('-', ' ', config('app.name'))}} | {{$title ?? 'Chord Musisi - Kumpulan Chord Lagu Terlengkap'}}</title>
+    @section('seo')
+        {!! seo($SEOData?? null) !!}
+    @show
 
-    <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    {{-- ====== Tambahan META Khusus Jika Halaman Punya Video ====== --}}
+    @isset($youtubeId)
+        {{-- OpenGraph video --}}
+        <meta property="og:video" content="https://www.youtube.com/embed/{{ $youtubeId }}">
+        <meta property="og:video:type" content="text/html">
+        <meta property="og:video:width" content="1280">
+        <meta property="og:video:height" content="720">
+        <meta property="og:image" content="https://img.youtube.com/vi/{{ $youtubeId }}/hqdefault.jpg">
+
+        {{-- Twitter Player Card --}}
+        <meta name="twitter:card" content="player">
+        <meta name="twitter:player" content="https://www.youtube.com/embed/{{ $youtubeId }}">
+        <meta name="twitter:player:width" content="1280">
+        <meta name="twitter:player:height" content="720">
+    @else
+        {{-- Default (tanpa video) --}}
+        <meta property="og:image" content="{{ secure_url('favicon.png') }}">
+        <meta name="twitter:card" content="summary">
+    @endisset
+
+    {{-- <title>{{str_replace('-', ' ', config('app.name'))}} | {{$title ?? 'Chord Musisi - Kumpulan Chord Lagu Terlengkap'}}</title> --}}
+    {{-- <title>{{str_replace('-', ' ', config('app.name'))}}</title> --}}
+
+    {{-- <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"> --}}
     {{-- <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}"> --}}
     {{-- <link rel="icon" type="image/png" href="/favicon.ico"> --}}
     {{-- <link rel="icon" type="image/x-icon" href="/favicon.ico"> --}}

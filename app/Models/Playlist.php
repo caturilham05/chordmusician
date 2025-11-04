@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Playlist extends Model
 {
+    use HasSEO;
+
     protected $table = 'playlists';
     protected $fillable = ['band', 'title', 'slug', 'content', 'published_at', 'link_youtube', 'click', 'click_yesterday'];
     protected $casts = [

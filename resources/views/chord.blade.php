@@ -6,10 +6,39 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="frame_youtube">
-                @if ($chord->link_youtube)
+                {{-- @if ($chord->link_youtube)
                     <div class="video-wrapper">
                         {!! $chord->link_youtube !!}
                     </div>
+                @else
+                    <img src="{{asset('assets/images/notfound.png')}}" alt="No Video Available" class="img-fluid" />
+                @endif --}}
+
+                @if ($chord->link_youtube)
+                    {{-- @php
+                        // ✅ Ambil YouTube ID dari link_youtube (bisa dari watch?v= atau embed/)
+                        // preg_match('/(?:embed\/|watch\?v=)([^"&?\/]+)/', $chord->link_youtube, $matches);
+                        preg_match('/(?:embed\/|watch\?v=)([A-Za-z0-9_-]{11})/', $chord->link_youtube, $matches);
+                        $youtubeId = $matches[1] ?? null;
+                    @endphp --}}
+
+                    @if ($youtubeId)
+                        {{-- === Video Embed Aman dan Terbaca Google === --}}
+                        <div class="video-wrapper" style="aspect-ratio:16/9;max-width:100%;border-radius:12px;overflow:hidden;">
+                            <iframe
+                                src="https://www.youtube.com/embed/{{ $youtubeId }}"
+                                title="{{ $chord->band }} - {{ $chord->title }} (YouTube)"
+                                width="100%"
+                                height="400"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                onerror="this.parentNode.innerHTML = `<a href='https://www.youtube.com/watch?v={{ $youtubeId }}' target='_blank'><img src='https://img.youtube.com/vi/{{ $youtubeId }}/hqdefault.jpg' alt='Tonton di YouTube' style='width:100%;border-radius:12px'><p style='text-align:center;color:white'>Tonton video di YouTube</p></a>`">
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    @else
+                        <img src="{{asset('assets/images/notfound.png')}}" alt="No Video Available" class="img-fluid" />
+                    @endif
                 @else
                     <img src="{{asset('assets/images/notfound.png')}}" alt="No Video Available" class="img-fluid" />
                 @endif
@@ -279,7 +308,52 @@
 </script>
 
 @if ($chord->link_youtube)
-    @php
+    {{-- === JSON-LD: VideoObject + MusicComposition === --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "{{ $chord->band }} - {{ $chord->title }}",
+        "description": "{{ $chord->description ?? 'Chord gitar dan lirik lagu dari ChordMusician.' }}",
+        "thumbnailUrl": "https://img.youtube.com/vi/{{ $youtubeId }}/hqdefault.jpg",
+        "uploadDate": "{{ $chord->created_at->format('Y-m-d\\TH:i:sP') }}",
+        "embedUrl": "https://www.youtube.com/embed/{{ $youtubeId }}",
+        "contentUrl": "https://www.youtube.com/watch?v={{ $youtubeId }}",
+        "publisher": {
+                "@type": "Organization",
+                "name": "Chord Musician",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "{{ secure_url('favicon.ico') }}"
+            }
+        },
+        "potentialAction": {
+            "@type": "WatchAction",
+            "target": "https://www.youtube.com/watch?v={{ $youtubeId }}"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicComposition",
+        "name": "{{ $chord->title }}",
+        "composer": {
+            "@type": "MusicGroup",
+            "name": "{{ $chord->band }}"
+        },
+        "inLanguage": "id",
+        "lyricist": "{{ $chord->band }}",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Chord Musician"
+        },
+        "url": "{{ url()->current() }}"
+    }
+    </script>
+
+    {{-- @php
         preg_match('/embed\/([^"?]+)/', $chord->link_youtube, $matches);
         $youtubeId = $matches[1] ?? '';
     @endphp
@@ -302,6 +376,6 @@
         }
       }
     }
-    </script>
+    </script> --}}
 @endif
 @endsection
