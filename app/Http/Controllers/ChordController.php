@@ -73,7 +73,7 @@ class ChordController extends Controller
             'keywords' => sprintf('chord gitar %s %s, lirik lagu %s %s, original chord %s %s, chord dasar %s %s', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : ''),
             'SEOData' => new SEOData(
                 title: sprintf('Chord %s - %s Original Chord', $chord?->band ?? '', $chord?->title ?? ''),
-                description: $chord?->title ?? '',
+                description: $chord?->title.' '.$chord->content ?? '',
                 image: $youtubeId
                     ? "https://img.youtube.com/vi/$youtubeId/hqdefault.jpg"
                     : asset('favicon.png'),
