@@ -43,7 +43,7 @@ return [
          * See https://developers.google.com/search/docs/advanced/robots/robots_meta_tag
          * Default: 'max-snippet:-1, max-image-preview:large, max-video-preview:-1'
          */
-        'default' => 'max-snippet:-1,max-image-preview:large,max-video-preview:-1',
+        'default' => 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1',
 
         /**
          * Force set the robots `default` value and make it impossible to overwrite it. (e.g. via SEOData->robots)
