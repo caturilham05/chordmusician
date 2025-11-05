@@ -309,6 +309,7 @@
 
 @if ($chord->link_youtube)
     {{-- === JSON-LD: VideoObject + MusicComposition === --}}
+    {{-- "https://www.youtube.com/embed/{{ $youtubeId }}" --}}
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",

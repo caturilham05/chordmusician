@@ -4,11 +4,11 @@
   <head>
 
     <meta charset="utf-8">
-    {{-- <meta name="google-site-verification" content="C4lx1dlw8HZqvEsx72FmMuCkFiQ5gnM0PZHay9n7m3s" /> --}}
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-    {{-- <meta name="description" content="{{ $description ?? 'Temukan chord gitar lagu-lagu Indonesia dan Barat di Chord Musician.' }}"> --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="{{ $keywords ?? 'chord, kunci gitar, lirik lagu, chord musisi, chord gitar indonesia, chord musician, kumpulan chord, lagu populer, chord lagu barat, chord lagu indonesia' }}">
-    {{-- <meta name="robots" content="index, follow"> --}}
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="C4lx1dlw8HZqvEsx72FmMuCkFiQ5gnM0PZHay9n7m3s" />
+    {{-- <meta name="description" content="{{ $description ?? 'Temukan chord gitar lagu-lagu Indonesia dan Barat di Chord Musician.' }}"> --}}
 
     @section('seo')
         {!! seo($SEOData?? null) !!}
