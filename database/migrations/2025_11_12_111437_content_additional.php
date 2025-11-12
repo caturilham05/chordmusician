@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('playlists', function (Blueprint $table) {
-            $table->text('title_additional')->nullable()->after('content');
+            $table->text('content_additional')->nullable()->after('content');
         });
     }
 
