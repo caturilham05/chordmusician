@@ -271,6 +271,35 @@ main#song {
     transition: all 0.2s ease;
 }
 
+.article-custom {
+    text-align: left;
+    color: #fff !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.article-custom-content ol {
+    list-style-type: decimal !important; /* tampilkan angka 1,2,3... */
+    margin-left: 1.5rem !important;      /* beri jarak dari kiri */
+    padding-left: 1.5rem !important;
+    display: block !important;
+}
+
+.article-custom-content ul {
+    list-style-type: disc !important;    /* tampilkan bullet untuk <ul> */
+    margin-left: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+
+/* opsional: tambahkan jarak antar item biar rapi */
+.article-custom-content li {
+    margin-bottom: 0.5rem;
+    display: list-item !important;
+    list-style-position: outside !important;
+    color: inherit;
+}
+
+
 /* --- Responsif untuk tablet dan mobile --- */
 @media (max-width: 992px) {
     pre.lyrics {

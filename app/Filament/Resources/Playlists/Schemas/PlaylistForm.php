@@ -7,6 +7,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\CodeEditor;
+use Filament\Forms\Components\RichEditor;
 
 class PlaylistForm
 {
@@ -26,6 +27,9 @@ class PlaylistForm
                 CodeEditor::make('content')
                     ->label('Chord & Lirik')
                     ->required()
+                    ->columnSpanFull(),
+                RichEditor::make('content_additional')
+                    ->label('Konten Tambahan')
                     ->columnSpanFull(),
                 DateTimePicker::make('published_at')
                     ->label('Add Published Date')

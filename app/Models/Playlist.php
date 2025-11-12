@@ -11,7 +11,7 @@ class Playlist extends Model
     use HasSEO;
 
     protected $table = 'playlists';
-    protected $fillable = ['band', 'title', 'slug', 'content', 'published_at', 'link_youtube', 'click', 'click_yesterday'];
+    protected $fillable = ['band', 'title', 'slug', 'content', 'published_at', 'link_youtube', 'click', 'click_yesterday', 'content_additional'];
     protected $casts = [
         'published_at' => 'datetime',
     ];
