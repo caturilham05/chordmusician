@@ -77,10 +77,12 @@
             <h1><a href="{{url()->current()}}">Chord {!!$chord->band!!} - {!! $chord->title !!} Original Chord</a></h1>
         </div>
 
-        <div class="article-custom">
-            {{-- <article>{!! str($chord->content_additional)->sanitizeHtml() !!}</article> --}}
-            <article class="article-custom-content" style="color: white !important">{!! $chord->content_additional !!}</article>
-        </div>
+        @if ($chord->content_additional)
+            <div class="article-custom">
+                {{-- <article>{!! str($chord->content_additional)->sanitizeHtml() !!}</article> --}}
+                <article class="article-custom-content" style="color: white !important">{!! $chord->content_additional !!}</article>
+            </div>
+        @endif
 
         <div class="controls mb-3 mt-3">
             <button id="transdown" class="btn btn-secondary">Transpose -</button>
