@@ -21,7 +21,6 @@ class Playlist extends Model
         return self::whereNotNull('published_at')
                     ->orderBy('published_at', 'desc')
                     ->paginate(10);
-                    // ->get();
     }
 
     public static function getPlaylistBySlug($slug)

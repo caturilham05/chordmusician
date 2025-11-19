@@ -26,7 +26,9 @@
     </div>
 @endforeach
 <div class="mt-4 mb-4 pagination-custom">
-    {{ $playlists->links() }}
+    {{-- {{ $playlists->links() }} --}}
+    {{ $playlists->links('vendor.pagination.ellipsis') }}
+    {{-- {{ $playlists->links('vendor.pagination.bootstrap-5') }} --}}
 </div>
 
 <div class="main-info header-text main-info-custom">
