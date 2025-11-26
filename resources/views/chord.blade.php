@@ -76,9 +76,6 @@
                     ])}}">{{$playlist->title}}</a></li>
                     <hr style="color: white" />
                 @endforeach
-                <div class="mt-4 mb-4 pagination-custom">
-                    {{ $playlistsByBand->links() }}
-                </div>
             </ul>
             <div style="text-align: center; padding: 10px; text-transform: uppercase;">
                 <img src="{{asset('assets/images/saweria.jpg')}}" alt="saweria" class="img-fluid" style="width: 200px; max-width: 100%;"/>
@@ -165,9 +162,6 @@
                     ])}}">{{$playlist->title}}</a></li>
                     <hr style="color: white" />
                 @endforeach
-                <div class="mt-4 mb-4 pagination-custom">
-                    {{ $playlistsByBand->links() }}
-                </div>
             </ul>
         </div>
 
