@@ -60,7 +60,7 @@
                     <hr style="color: white" />
                 @endforeach
                 <div class="mt-4 mb-4 pagination-custom">
-                    {{ $playlistsByBand->links() }}
+                    {{ $playlistsByBand->links('vendor.pagination.ellipsis') }}
                 </div>
             </ul>
             <div class="heading-section detail">
