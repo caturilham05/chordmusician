@@ -16,12 +16,17 @@ class Playlist extends Model
         'published_at' => 'datetime',
     ];
 
-    public static function getPlaylists()
+    public static function getPlaylists($limit = null)
     {
-        return self::whereNotNull('published_at')
-                    ->orderBy('published_at', 'desc')
-                    ->paginate(10);
+        $query = self::whereNotNull('published_at');
+
+        if (is_null($limit)) {
+            return $query->orderBy('published_at', 'desc')->paginate(10);
+        }
+
+        return $query->inRandomOrder()->take($limit)->get();
     }
+
 
     public static function getPlaylistBySlug($slug)
     {
@@ -33,11 +38,16 @@ class Playlist extends Model
     public static function getPlaylistsByBand($slug)
     {
         $playlist = self::getPlaylistBySlug($slug);
-        return self::where('band', $playlist->band)
-                    ->whereNotNull('published_at')
-                    ->orderBy('published_at', 'desc')
-                    ->paginate(10)
-                    ->withQueryString();
+        $playlistsByBand = [];
+        if ($playlist) {
+            $playlistsByBand = self::where('band', $playlist->band)
+                                ->where('slug', '!=', $slug)
+                                ->whereNotNull('published_at')
+                                ->orderBy('published_at', 'desc')
+                                ->paginate(5)
+                                ->withQueryString();
+        }
+        return $playlistsByBand;
     }
 
     public static function getLatestPlaylists($limit = 5)

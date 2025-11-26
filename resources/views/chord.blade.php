@@ -47,10 +47,28 @@
 
         <div class="col-lg-4">
             <div class="heading-section detail">
-                <h4 style="text-transform: uppercase">other {{$chord->band}}</h4>
+                <h4 style="text-transform: uppercase; margin-bottom: 5px !important">other {{$chord->band}}</h4>
+                <center><a href="{{route('playlist_search', ['query' => $chord->band])}}" style="text-decoration: underline !important">Show All</a></center>
             </div>
-            <ul>
+            <ul style="margin-top: 1rem">
                 @foreach ($playlistsByBand as $playlist)
+                    <li><a href="{{route('chord', [
+                        'year' => $playlist->published_at->format('Y'),
+                        'month' => $playlist->published_at->format('m'),
+                        'slug' => $playlist->slug
+                    ])}}">{{$playlist->title}}</a></li>
+                    <hr style="color: white" />
+                @endforeach
+                <div class="mt-4 mb-4 pagination-custom">
+                    {{ $playlistsByBand->links() }}
+                </div>
+            </ul>
+            <div class="heading-section detail">
+                <h4 style="text-transform: uppercase; margin-bottom: 5px !important">New Songs</h4>
+                <center><a href="{{route('playlist')}}" style="text-decoration: underline !important">Show All</a></center>
+            </div>
+            <ul style="margin-top: 1rem">
+                @foreach ($playlist_new as $playlist)
                     <li><a href="{{route('chord', [
                         'year' => $playlist->published_at->format('Y'),
                         'month' => $playlist->published_at->format('m'),
@@ -117,6 +135,50 @@
                 <pre class="lyrics">{!! $formatted !!}</pre>
             </div>
         </main>
+    </div>
+</div>
+
+<hr style="color: white" />
+<div class="content">
+    <div class="share">
+        <h5>Share This Song On:</h5>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="btn btn-primary">Facebook</a>
+        <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode('Check out this chord: ' . $chord->band . ' - ' . $chord->title) }}" target="_blank" class="btn btn-info">Twitter</a>
+        <a href="https://wa.me/?text={{ urlencode('Check out this chord: ' . url()->current()) }}" target="_blank" class="btn btn-success">WhatsApp</a>
+    </div>
+</div>
+
+<hr style="color: white" />
+<div class="content">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="heading-section detail">
+                <h4 style="text-transform: uppercase; margin-bottom: 5px !important">Popular Songs</h4>
+                <center><a href="{{route('playlist')}}" style="text-decoration: underline !important">Show All</a></center>
+            </div>
+            <ul style="margin-top: 1rem">
+                @foreach ($playlist_popular as $playlist)
+                    <li><a href="{{route('chord', [
+                        'year' => $playlist->published_at->format('Y'),
+                        'month' => $playlist->published_at->format('m'),
+                        'slug' => $playlist->slug
+                    ])}}">{{$playlist->title}}</a></li>
+                    <hr style="color: white" />
+                @endforeach
+                <div class="mt-4 mb-4 pagination-custom">
+                    {{ $playlistsByBand->links() }}
+                </div>
+            </ul>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="main-info header-text">
+                <div class="heading-section" style="text-align: center">
+                    <h4>ABOUT US</h4>
+                </div>
+                <p style="text-align: justify">{{$home->content}}</p>
+            </div>
+        </div>
     </div>
 </div>
 

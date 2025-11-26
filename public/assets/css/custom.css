@@ -299,6 +299,14 @@ main#song {
     color: inherit;
 }
 
+.share {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
 
 /* --- Responsif untuk tablet dan mobile --- */
 @media (max-width: 992px) {
@@ -346,6 +354,15 @@ main#song {
 
     .item.item-custom ul .published_date {
         display: none;
+    }
+
+    .share {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+        margin-bottom: 0.5rem;
     }
 }
 

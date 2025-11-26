@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Playlist;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use App\Models\Home;
 
 class ChordController extends Controller
 {
@@ -51,7 +52,10 @@ class ChordController extends Controller
 
     public function index($year, $month, $slug)
     {
+        $home = Home::getHome();
         $playlist = Playlist::getPlaylistBySlug($slug);
+        $playlist_popular = Playlist::getPlaylists(15);
+        $playlist_new = Playlist::getLatestPlaylists(5);
         if (!$playlist) abort(404);
 
         $sessionKey = 'clicked_playlist_' . $playlist->id;
@@ -70,6 +74,9 @@ class ChordController extends Controller
             'youtubeId' => $youtubeId,
             'chord' => $chord,
             'playlistsByBand' => $playlistsByBand,
+            'playlist_new' => $playlist_new,
+            'playlist_popular' => $playlist_popular,
+            'home' => $home,
             'keywords' => sprintf('chord gitar %s %s, lirik lagu %s %s, original chord %s %s, chord dasar %s %s', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : '', $chord ? $chord->title : '', $chord ? $chord->band : ''),
             'SEOData' => new SEOData(
                 title: sprintf('Chord %s - %s Original Chord', $chord?->band ?? '', $chord?->title ?? ''),
