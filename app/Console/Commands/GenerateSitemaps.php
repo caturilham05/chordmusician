@@ -18,7 +18,7 @@ class GenerateSitemaps extends Command
 
     public function handle()
     {
-        $publicPath = public_path();
+        $publicPath = dirname(base_path()) . '/public_html';
 
         // =========================
         // 1. Sitemap STATIC
