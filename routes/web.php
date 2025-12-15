@@ -17,26 +17,69 @@ Route::get('{year}/{month}/{slug}', [App\Http\Controllers\ChordController::class
 ])->name('chord');
 Route::get('/search', [App\Http\Controllers\PlaylistController::class, 'search'])->name('playlist_search');
 
-Route::get('/sitemap.xml', function () {
-    $sitemap = Sitemap::create();
+// Route::get('/sitemap.xml', function () {
 
-    // Tambahkan halaman statis (misal homepage, about, contact)
-    $sitemap->add(Url::create('/')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
-    $sitemap->add(Url::create('/playlist')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
-    $sitemap->add(Url::create('/request-chord')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
+//     $sitemap = Sitemap::create();
 
-    // Tambahkan halaman dinamis (misal daftar chord)
-    foreach (Playlist::latest()->get() as $playlist) {
-        $sitemap->add(
-            Url::create(url("/{$playlist->published_at->format('Y/m')}/{$playlist->slug}"))
-                ->setLastModificationDate($playlist->updated_at)
-                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
-                ->setPriority(1.0)
-        );
-    }
+//     // =====================
+//     // Halaman statis
+//     // =====================
+//     $sitemap->add(
+//         Url::create('/')
+//             ->setPriority(1.0)
+//             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+//     );
 
-    return $sitemap->toResponse(request());
-});
+//     $sitemap->add(
+//         Url::create('/playlist')
+//             ->setPriority(0.9)
+//             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+//     );
+
+//     $sitemap->add(
+//         Url::create('/request-chord')
+//             ->setPriority(0.7)
+//             ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+//     );
+
+//     // =====================
+//     // Playlist (dinamis)
+//     // =====================
+//     Playlist::whereNotNull('published_at')
+//         ->orderBy('published_at', 'desc')
+//         ->each(function ($playlist) use ($sitemap) {
+
+//             $sitemap->add(
+//                 Url::create(url("/{$playlist->published_at->format('Y/m')}/{$playlist->slug}"))
+//                     ->setLastModificationDate($playlist->updated_at)
+//                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+//                     ->setPriority(0.8)
+//             );
+//         });
+
+//     return $sitemap->toResponse(request());
+// });
+
+// Route::get('/sitemap.xml', function () {
+//     $sitemap = Sitemap::create();
+
+//     // Tambahkan halaman statis (misal homepage, about, contact)
+//     $sitemap->add(Url::create('/')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
+//     $sitemap->add(Url::create('/playlist')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
+//     $sitemap->add(Url::create('/request-chord')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
+
+//     // Tambahkan halaman dinamis (misal daftar chord)
+//     foreach (Playlist::latest()->get() as $playlist) {
+//         $sitemap->add(
+//             Url::create(url("/{$playlist->published_at->format('Y/m')}/{$playlist->slug}"))
+//                 ->setLastModificationDate($playlist->updated_at)
+//                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+//                 ->setPriority(1.0)
+//         );
+//     }
+
+//     return $sitemap->toResponse(request());
+// });
 
 // Route::get('/reset-click', function () {
 //     // Jalankan command yang sama dengan scheduler
