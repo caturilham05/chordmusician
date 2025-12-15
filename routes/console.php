@@ -18,4 +18,4 @@ Schedule::call(function () {
 
 Schedule::call(function () {
     Artisan::call('sitemap:generate');
-})->everyTwoMinutes();
+})->dailyAt('01:00');
