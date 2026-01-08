@@ -12,10 +12,6 @@ Schedule::call(function () {
     Artisan::call('click:reset');
 })->dailyAt('00:00');
 
-// Schedule::call(function () {
-//     Artisan::call('sitemap:generate');
-// })->dailyAt('00:00');
-
 Schedule::call(function () {
     Artisan::call('sitemap:generate');
 })->dailyAt('01:00');

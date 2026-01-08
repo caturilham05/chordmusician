@@ -90,6 +90,7 @@
   <script src="{{asset('assets/js/tabs.js')}}"></script>
   <script src="{{asset('assets/js/popup.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9400603588993948" crossorigin="anonymous"></script>
   @yield('scripts')
   </body>
 </html>
