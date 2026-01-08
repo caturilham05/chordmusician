@@ -57,6 +57,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9400603588993948" crossorigin="anonymous"></script>
   </head>
 
 <body>
@@ -90,7 +91,6 @@
   <script src="{{asset('assets/js/tabs.js')}}"></script>
   <script src="{{asset('assets/js/popup.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9400603588993948" crossorigin="anonymous"></script>
   @yield('scripts')
   </body>
 </html>
