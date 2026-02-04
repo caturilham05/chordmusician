@@ -43,7 +43,7 @@
                     <img src="{{asset('assets/images/notfound.png')}}" alt="No Video Available" class="img-fluid" />
                 @endif
             </div>
-            <div class="my-4 text-center">
+            <div class="my-4 text-center" style="color: white;">
                 <script async="async" data-cfasync="false"
                     src="https://pl28615204.effectivegatecpm.com/282daf50ad33b6e079f9608a82a0d36a/invoke.js"></script>
 
