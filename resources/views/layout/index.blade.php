@@ -57,10 +57,10 @@
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9400603588993948" crossorigin="anonymous"></script>
-    @if (request()->routeIs('chord'))
+    {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9400603588993948" crossorigin="anonymous"></script> --}}
+    {{-- @if (request()->routeIs('chord'))
       <script src="https://pl28614671.effectivegatecpm.com/cf/f0/89/cff0893c29e6c7e1f603b8d77cb4414d.js"></script>
-    @endif
+    @endif --}}
   </head>
 
 <body>
